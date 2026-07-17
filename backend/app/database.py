@@ -1,19 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from app.config import settings
 
-DATABASE_URL = (
-    f"postgresql://{settings.DB_USER}:{settings.DB_PASSWORD}"
-    f"@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
-)
+SQLALCHEMY_DATABASE_URL = "postgresql://supporting_user:supporting_pass@localhost:5432/supporting_db"
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
-# Dependencia para obtener sesión
 def get_db():
     db = SessionLocal()
     try:

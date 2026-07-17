@@ -1,15 +1,12 @@
 from pydantic import BaseModel
 
-class ServiceBase(BaseModel):
+class ServiceCreate(BaseModel):
     nombre: str
     descripcion: str
-
-class ServiceCreate(ServiceBase):
     usuario_id: int
 
-class ServiceResponse(ServiceBase):
+class ServiceResponse(ServiceCreate):
     id: int
-    usuario_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
