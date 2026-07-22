@@ -1,4 +1,7 @@
-export default function Monitorizacion() {
+import DashboardImg from "../assets/img/dashboard.png";
+import CpuChart from "../assets/img/cpu-chart.png";
+import NetworkChart from "../assets/img/network-chart.png";
+export default function MonitorizacionDemo() {
   return (
     <div>
       {/* NAVBAR */}
@@ -34,7 +37,7 @@ export default function Monitorizacion() {
           </div>
 
           <div className="hero-image">
-            <img src="/assets/img/dashboard.png" alt="Panel Simulado" />
+            <img src={DashboardImg} alt="Panel Simulado" />
           </div>
         </section>
 
@@ -81,7 +84,7 @@ export default function Monitorizacion() {
             <div className="card">
               <h3>Actividad de CPU</h3>
               <img
-                src="/assets/img/cpu-chart.png"
+                src={CpuChart}
                 alt="CPU Chart"
                 style={{ width: "100%", marginTop: "15px" }}
               />
@@ -90,7 +93,7 @@ export default function Monitorizacion() {
             <div className="card">
               <h3>Actividad de Red</h3>
               <img
-                src="/assets/img/network-chart.png"
+                src={NetworkChart}
                 alt="Network Chart"
                 style={{ width: "100%", marginTop: "15px" }}
               />
