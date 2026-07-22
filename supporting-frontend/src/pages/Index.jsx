@@ -1,3 +1,4 @@
+import heroImg from "../assets/img/img_hero.png";
 export default function Index() {
   return (
     <div>
@@ -28,10 +29,10 @@ export default function Index() {
             <p>Soporte IT profesional, hardening avanzado y monitorización</p>
             <p>continua para empresas modernas.</p>
           </div>
-
           <div className="hero-image">
-            <img src="/assets/img/img_hero.png" alt="Supporting Hero" />
-          </div>
+             <img src={heroImg} alt="Supporting Hero" />
+           </div>
+          
         </section>
 
         {/* SERVICIOS */}

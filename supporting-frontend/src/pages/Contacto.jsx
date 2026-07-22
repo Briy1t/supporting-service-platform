@@ -1,3 +1,4 @@
+import Contact  from "../assets/img/contact.png";
 import { useEffect, useState } from "react";
 
 export default function Contacto() {
@@ -46,7 +47,7 @@ export default function Contacto() {
           </div>
 
           <div className="hero-image">
-            <img src="/assets/img/contact.png" alt="Contacto Supporting" />
+            <img src={Contact} alt="Contacto Supporting" />
           </div>
         </section>
 
