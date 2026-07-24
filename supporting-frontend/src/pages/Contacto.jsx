@@ -1,5 +1,12 @@
-import Contact  from "../assets/img/contact.png";
+import Contact from "../assets/img/contact.png";
 import { useEffect, useState } from "react";
+
+import { 
+  enviarContacto,
+  enviarAccesoEmpresas,
+  enviarIntegracion,
+  enviarDemoGuiada
+} from "../services/api";
 
 export default function Contacto() {
   const [tipo, setTipo] = useState("contacto_general");
@@ -9,6 +16,37 @@ export default function Contacto() {
     const tipoURL = params.get("tipo") || "contacto_general";
     setTipo(tipoURL);
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      nombre: e.target.nombre.value,
+      email: e.target.email.value,
+      mensaje: e.target.mensaje.value,
+      tipo: tipo
+    };
+
+    try {
+      if (tipo === "contacto_general") {
+        await enviarContacto(data);
+      } 
+      else if (tipo === "acceso_empresas") {
+        await enviarAccesoEmpresas(data);
+      } 
+      else if (tipo === "integracion_personalizada") {
+        await enviarIntegracion(data);
+      } 
+      else if (tipo === "demo_guiada") {
+        await enviarDemoGuiada(data);
+      }
+
+      alert("Solicitud enviada correctamente");
+    } catch (error) {
+      alert("Error al enviar la solicitud");
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -55,32 +93,19 @@ export default function Contacto() {
         <section className="section">
           <h2 className="section-title">Formulario de Contacto</h2>
 
-          <form className="card" style={{ maxWidth: "600px", margin: "auto" }}>
-            <input type="hidden" name="tipo_solicitud" value={tipo} />
-
+          <form 
+            className="card" 
+            style={{ maxWidth: "600px", margin: "auto" }}
+            onSubmit={handleSubmit}
+          >
             <label>Nombre</label>
-            <input
-              type="text"
-              name="nombre"
-              required
-              style={{ marginBottom: "20px", padding: "10px", width: "100%" }}
-            />
+            <input type="text" name="nombre" required />
 
             <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              style={{ marginBottom: "20px", padding: "10px", width: "100%" }}
-            />
+            <input type="email" name="email" required />
 
             <label>Mensaje</label>
-            <textarea
-              name="mensaje"
-              rows="5"
-              required
-              style={{ marginBottom: "20px", padding: "10px", width: "100%" }}
-            ></textarea>
+            <textarea name="mensaje" rows="5" required></textarea>
 
             <button type="submit" className="btn-primary">
               Enviar Solicitud
