@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
+
 from app.database import Base
 
 class User(Base):
@@ -6,6 +7,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String, nullable=False)
-    email = Column(String, unique=True, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)
-    rol = Column(String, default="cliente")  # cliente / tecnico / admin
+    password_reset_required = Column(Boolean, default=True)  # ← NUEVO
+    rol = Column(String, default="cliente")

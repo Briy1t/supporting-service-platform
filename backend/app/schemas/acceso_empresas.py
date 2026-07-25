@@ -2,7 +2,7 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 
 class AccesoEmpresasCreate(BaseModel):
-    empresa: str
+    
     nombre: str
     email: EmailStr
     telefono: str | None = None

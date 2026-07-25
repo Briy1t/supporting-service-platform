@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.service import Service
 from app.schemas.service_schema import ServiceCreate, ServiceResponse
+from app.models.technician import Technician
+from app.models.ticket import Ticket
 
 router = APIRouter(
     prefix="/services",
@@ -45,3 +47,12 @@ def update_service(service_id: int, service: ServiceCreate, db: Session = Depend
     db.commit()
     db.refresh(db_service)
     return db_service
+
+@router.get("/panel")
+def panel_info(db: Session = Depends(get_db)):
+    return {
+        "tecnicos": db.query(Technician).count(),
+        "tickets": db.query(Ticket).count(),
+        "servicios": db.query(Service).count()
+    }
+
