@@ -7,7 +7,7 @@ class Integracion(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String, nullable=False)
-    empresa = Column(String, nullable=False)
+    empresa = Column(String, nullable=True)
     email = Column(String, nullable=False)
     mensaje = Column(String, nullable=False)
     tipo = Column(String, default="integracion_personalizada")

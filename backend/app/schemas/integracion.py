@@ -3,7 +3,7 @@ from datetime import datetime
 
 class IntegracionCreate(BaseModel):
     nombre: str
-    empresa: str
+    empresa: str | None = None
     email: EmailStr
     mensaje: str
     tipo: str = "integracion_personalizada"
