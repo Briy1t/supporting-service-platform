@@ -9,7 +9,6 @@ router = APIRouter(prefix="/acceso_empresas", tags=["Acceso Empresas"])
 @router.post("/", response_model=AccesoEmpresasResponse)
 def crear_acceso_empresas(data: AccesoEmpresasCreate, db: Session = Depends(get_db)):
     solicitud = AccesoEmpresas(
-        empresa=data.empresa,
         nombre=data.nombre,
         email=data.email,
         telefono=data.telefono,
@@ -20,3 +19,4 @@ def crear_acceso_empresas(data: AccesoEmpresasCreate, db: Session = Depends(get_
     db.commit()
     db.refresh(solicitud)
     return solicitud
+

@@ -6,7 +6,7 @@ class AccesoEmpresas(Base):
     __tablename__ = "acceso_empresas"
 
     id = Column(Integer, primary_key=True, index=True)
-    empresa = Column(String, nullable=False)
+    empresa = Column(String, nullable=True)
     nombre = Column(String, nullable=False)
     email = Column(String, nullable=False)
     telefono = Column(String, nullable=True)
