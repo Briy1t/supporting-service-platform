@@ -9,7 +9,7 @@ from app.utils.security import raise_401, raise_400
 # LOGIN
 # ---------------------------------------------------------
 def login_user(data: UserLogin, db: Session):
-    user = db.query(User).filter(User.email == data.email).first()
+    user = db.query(User).filter(User.usuario == data.usuario).first()
 
     if not user:
         raise_401("Usuario no encontrado")
@@ -19,19 +19,10 @@ def login_user(data: UserLogin, db: Session):
 
     # Si la contraseña es temporal, avisamos al frontend
     if user.password_reset_required:
-        return {
-            "status": "PASSWORD_RESET_REQUIRED",
-            "message": "Debe cambiar la contraseña",
-            "email": user.email
-        }
+        return user  # ← DEVOLVER EL OBJETO, NO UN DICT
 
-    # Login normal
-    return {
-        "status": "OK",
-        "id": user.id,
-        "nombre": user.nombre,
-        "rol": user.rol
-    }
+    return user  # ← SIEMPRE DEVOLVER EL OBJETO
+
 
 
 # ---------------------------------------------------------
@@ -42,12 +33,14 @@ def create_user(data: UserCreate, db: Session):
         raise_400("El email ya está registrado")
 
     new_user = User(
+        usuario=data.usuario,
         nombre=data.nombre,
         email=data.email,
         password=hash_password(data.password),
         rol="cliente",
-        password_reset_required=True  # ← porque tú le das una clave temporal
+        password_reset_required=True
     )
+
 
     db.add(new_user)
     db.commit()
@@ -60,3 +53,4 @@ def create_user(data: UserCreate, db: Session):
         "rol": new_user.rol,
         "password_reset_required": new_user.password_reset_required
     }
+

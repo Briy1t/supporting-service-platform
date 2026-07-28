@@ -14,32 +14,35 @@ ALGORITHM = "HS256"
 
 def create_token(user):
     payload = {
-        "sub": user.email,
+        "sub": user.usuario,
         "id": user.id,
         "rol": user.rol,
         "exp": datetime.utcnow() + timedelta(hours=12)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 # -----------------------------
-# LOGIN (usa tu controlador)
+# LOGIN 
 # -----------------------------
 @router.post("/login")
 def login(data: UserLogin, db: Session = Depends(get_db)):
-    user_data = login_user(data, db)
+    user = login_user(data, db)
 
-    # Si requiere cambio de contraseña, no generamos token
-    if user_data["status"] == "PASSWORD_RESET_REQUIRED":
-        return user_data
+    # Si requiere cambio de contraseña
+    if user.password_reset_required:
+        return {
+            "status": "PASSWORD_RESET_REQUIRED",
+            "message": "Debe cambiar la contraseña",
+            "email": user.email
+        }
 
-    # Crear token
-    token = create_token(user_data)
+    token = create_token(user)
 
     return {
         "status": "OK",
         "token": token,
-        "id": user_data["id"],
-        "nombre": user_data["nombre"],
-        "rol": user_data["rol"]
+        "id": user.id,
+        "usuario": user.usuario,
+        "rol": user.rol
     }
 
 # -----------------------------
@@ -51,21 +54,19 @@ def register(data: UserCreate, db: Session = Depends(get_db)):
 
 
 # -----------------------------
-# CREAR USUARIO (solo para ti)
+# CREAR USUARIO 
 # Contraseña temporal + obligación de cambiarla
 # -----------------------------
 @router.post("/create-user")
-def create_user_admin(nombre: str, email: str, password: str, rol: str = "cliente", db: Session = Depends(get_db)):
-    # ¿Existe ya?
-    existing = db.query(User).filter(User.email == email).first()
+def create_user_admin(usuario: str, nombre: str, email: str, password: str, rol: str = "cliente", db: Session = Depends(get_db)):
+    existing = db.query(User).filter(User.usuario == usuario).first()
     if existing:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
 
-    # Hash de la contraseña temporal
     hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode()
 
-    # Crear usuario con obligación de cambiar contraseña
     user = User(
+        usuario=usuario,
         nombre=nombre,
         email=email,
         password=hashed,
@@ -79,23 +80,20 @@ def create_user_admin(nombre: str, email: str, password: str, rol: str = "client
 
     return {"message": "Usuario creado correctamente", "id": user.id}
 
-
 # -----------------------------
 # CAMBIO DE CONTRASEÑA
 # Para cuando el usuario entra por primera vez
 # -----------------------------
 @router.post("/change-password")
-def change_password(email: str, old_password: str, new_password: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == email).first()
+def change_password(usuario: str, old_password: str, new_password: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.usuario == usuario).first()
 
     if not user:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-    # Validar contraseña actual
     if not bcrypt.checkpw(old_password.encode("utf-8"), user.password.encode("utf-8")):
         raise HTTPException(status_code=400, detail="Contraseña actual incorrecta")
 
-    # Generar nuevo hash
     new_hashed = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt()).decode()
 
     user.password = new_hashed

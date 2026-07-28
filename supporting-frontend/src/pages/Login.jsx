@@ -1,9 +1,51 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginImg from "../assets/img/login.png";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [usuario, setUsuario] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:8000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          usuario: usuario,
+          password: password
+        })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        setError(data.detail || "Credenciales incorrectas");
+        return;
+      }
+
+      const data = await response.json();
+
+      // Guardar token
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("usuario", data.usuario);
+      localStorage.setItem("rol", data.rol);
+
+      // Navegar al panel
+      navigate("/panel");
+
+    } catch (err) {
+      setError("Error de conexión con el servidor");
+    }
+  };
+
   return (
     <div>
-      {/* NAVBAR */}
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
@@ -22,12 +64,10 @@ export default function Login() {
       </header>
 
       <main className="container">
-        {/* HERO LOGIN */}
         <section className="hero">
           <div className="hero-content">
             <h1>Acceso de Usuario</h1>
             <p>Ingresa con tus credenciales para acceder a tu panel de control.</p>
-            <p>Si aún no tienes acceso, contacta con nuestro equipo técnico.</p>
           </div>
 
           <div className="hero-image">
@@ -35,15 +75,22 @@ export default function Login() {
           </div>
         </section>
 
-        {/* FORMULARIO DE LOGIN */}
         <section className="section">
           <h2 className="section-title">Iniciar Sesión</h2>
 
-          <form className="card" style={{ maxWidth: "500px", margin: "auto" }}>
+          <form className="card" style={{ maxWidth: "500px", margin: "auto" }} onSubmit={handleLogin}>
+            
+            {error && (
+              <p style={{ color: "red", marginBottom: "20px" }}>
+                {error}
+              </p>
+            )}
+
             <label>Usuario</label>
             <input
               type="text"
-              name="usuario"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
               required
               style={{ marginBottom: "20px", padding: "10px", width: "100%" }}
             />
@@ -51,21 +98,17 @@ export default function Login() {
             <label>Contraseña</label>
             <input
               type="password"
-              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               style={{ marginBottom: "20px", padding: "10px", width: "100%" }}
             />
 
             <button type="submit" className="btn-primary">Ingresar</button>
-
-            <p style={{ marginTop: "20px", color: "#b4c7d7", fontSize: "14px" }}>
-              * Panel en construcción — algunas funciones pueden no estar disponibles.
-            </p>
           </form>
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
         <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
       </footer>
