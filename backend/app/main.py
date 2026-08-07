@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import engine, Base
+from app.database import engine_web, BaseWeb
 
 # MODELOS (solo para que create_all funcione)
 from app.models.user import User
@@ -48,7 +48,7 @@ app.add_middleware(
 # ---------------------------------------------------------
 # 3) Crear tablas
 # ---------------------------------------------------------
-Base.metadata.create_all(bind=engine)
+BaseWeb.metadata.create_all(bind=engine_web)
 
 # ---------------------------------------------------------
 # 4) Incluir routers

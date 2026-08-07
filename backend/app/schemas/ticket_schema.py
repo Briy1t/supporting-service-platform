@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
+from pydantic import ConfigDict
 
 class TicketBase(BaseModel):
     tipo: str
@@ -19,5 +20,4 @@ class TicketResponse(TicketBase):
     estado: str
     creado_en: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

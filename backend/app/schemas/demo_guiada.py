@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
-
+from pydantic import ConfigDict
 class DemoGuiadaCreate(BaseModel):
     nombre: str
     empresa: str | None = None
@@ -12,5 +12,4 @@ class DemoGuiadaResponse(DemoGuiadaCreate):
     id: int
     fecha: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
-from app.database import Base
+from app.database import BaseWeb
 
-class Service(Base):
+class Service(BaseWeb):
     __tablename__ = "servicios"
 
     id = Column(Integer, primary_key=True, index=True)

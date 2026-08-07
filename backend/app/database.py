@@ -1,19 +1,23 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+import os
 
-SQLALCHEMY_DATABASE_URL = "postgresql://supporting_user:supporting_pass@localhost:5432/supporting_db"
+load_dotenv()
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
-Base = declarative_base()
+engine_web = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
+SessionLocalWeb = sessionmaker(autocommit=False, autoflush=False, bind=engine_web)
 
-def get_db():
-    db = SessionLocal()
+BaseWeb = declarative_base()
+
+def get_db_web():
+    db = SessionLocalWeb()
     try:
         yield db
     finally:
         db.close()
 
-from app.models.user import User
-Base.metadata.create_all(bind=engine)
+
+
