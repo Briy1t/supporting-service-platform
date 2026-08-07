@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
-from app.database import Base
+from app.database import BaseWeb
 
-class AccesoEmpresas(Base):
+class AccesoEmpresas(BaseWeb):
     __tablename__ = "acceso_empresas"
 
     id = Column(Integer, primary_key=True, index=True)

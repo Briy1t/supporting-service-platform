@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from pydantic import ConfigDict
 class ServiceCreate(BaseModel):
     nombre: str
     descripcion: str
@@ -8,5 +8,4 @@ class ServiceCreate(BaseModel):
 class ServiceResponse(ServiceCreate):
     id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

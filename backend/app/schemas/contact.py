@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
+from pydantic import ConfigDict
 
 class ContactCreate(BaseModel):
     nombre: str
@@ -10,6 +11,5 @@ class ContactCreate(BaseModel):
 class ContactResponse(ContactCreate):
     id: int
     fecha: datetime
-
-    class Config:
-        orm_mode = True
+    
+    model_config = ConfigDict(from_attributes=True)

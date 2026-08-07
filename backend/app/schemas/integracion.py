@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
-
+from pydantic import ConfigDict
 class IntegracionCreate(BaseModel):
     nombre: str
     empresa: str | None = None
@@ -12,5 +12,4 @@ class IntegracionResponse(IntegracionCreate):
     id: int
     fecha: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

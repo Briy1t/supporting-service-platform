@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database import get_db_web
 from app.models.user import User
 from app.schemas.user_schema import UserLogin, UserCreate
 from app.controllers.auth_controller import login_user, create_user
@@ -8,9 +8,13 @@ import bcrypt
 import jwt
 from datetime import datetime, timedelta
 router = APIRouter(prefix="/auth", tags=["Auth"])
+import os
+from dotenv import load_dotenv
 
-SECRET_KEY = "supporting_secret_key"
-ALGORITHM = "HS256"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("JWT_ALGORITHM")
 
 def create_token(user):
     payload = {
@@ -24,7 +28,7 @@ def create_token(user):
 # LOGIN 
 # -----------------------------
 @router.post("/login")
-def login(data: UserLogin, db: Session = Depends(get_db)):
+def login(data: UserLogin, db: Session = Depends(get_db_web)):
     user = login_user(data, db)
 
     # Si requiere cambio de contraseña
@@ -49,7 +53,7 @@ def login(data: UserLogin, db: Session = Depends(get_db)):
 # REGISTRO NORMAL (usa tu controlador)
 # -----------------------------
 @router.post("/register")
-def register(data: UserCreate, db: Session = Depends(get_db)):
+def register(data: UserCreate, db: Session = Depends(get_db_web)):
     return create_user(data, db)
 
 
@@ -58,7 +62,7 @@ def register(data: UserCreate, db: Session = Depends(get_db)):
 # Contraseña temporal + obligación de cambiarla
 # -----------------------------
 @router.post("/create-user")
-def create_user_admin(usuario: str, nombre: str, email: str, password: str, rol: str = "cliente", db: Session = Depends(get_db)):
+def create_user_admin(usuario: str, nombre: str, email: str, password: str, rol: str = "cliente", db: Session = Depends(get_db_web)):
     existing = db.query(User).filter(User.usuario == usuario).first()
     if existing:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
@@ -85,7 +89,7 @@ def create_user_admin(usuario: str, nombre: str, email: str, password: str, rol:
 # Para cuando el usuario entra por primera vez
 # -----------------------------
 @router.post("/change-password")
-def change_password(usuario: str, old_password: str, new_password: str, db: Session = Depends(get_db)):
+def change_password(usuario: str, old_password: str, new_password: str, db: Session = Depends(get_db_web)):
     user = db.query(User).filter(User.usuario == usuario).first()
 
     if not user:

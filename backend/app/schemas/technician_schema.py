@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from pydantic import ConfigDict
 class TechnicianBase(BaseModel):
     nombre: str
     especialidad: str
@@ -11,5 +11,4 @@ class TechnicianResponse(TechnicianBase):
     id: int
     disponibilidad: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
