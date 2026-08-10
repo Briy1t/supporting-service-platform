@@ -19,6 +19,7 @@ def obtener_ticket(ticket_id: int, db: Session = Depends(get_db_web)):
 def actualizar_ticket(ticket_id: int, data: TicketUpdate, db: Session = Depends(get_db_web)):
     return update_ticket(ticket_id, data, db)
 
-@router.get("/tickets")
+@router.get("/")
 def get_tickets(db: Session = Depends(get_db_web)):
     return db.query(Ticket).all()
+

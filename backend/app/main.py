@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine_web, BaseWeb
 
-# MODELOS (solo para que create_all funcione)
+
 from app.models.user import User
 from app.models.ticket import Ticket
 from app.models.technician import Technician
@@ -13,7 +13,7 @@ from app.models.acceso_empresas import AccesoEmpresas
 from app.models.integracion import Integracion
 from app.models.demo_guiada import DemoGuiada
 
-# RUTAS
+
 from app.routes import (
     auth_routes,
     ticket_routes,
