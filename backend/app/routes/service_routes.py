@@ -11,6 +11,20 @@ router = APIRouter(
     tags=["Servicios"]
 )
 
+
+@router.get("/panel-info")
+def panel_info(db: Session = Depends(get_db_web)):
+    return {
+        "tecnicos": db.query(Technician).count(),
+        "tickets": db.query(Ticket).count(),
+        "servicios": db.query(Service).count()
+    }
+
+@router.get("/", response_model=list[ServiceResponse])
+def list_services(db: Session = Depends(get_db_web)):
+    return db.query(Service).all()
+
+
 @router.post("/", response_model=ServiceResponse)
 def create_service(service: ServiceCreate, db: Session = Depends(get_db_web)):
     new_service = Service(
@@ -23,9 +37,6 @@ def create_service(service: ServiceCreate, db: Session = Depends(get_db_web)):
     db.refresh(new_service)
     return new_service
 
-@router.get("/", response_model=list[ServiceResponse])
-def list_services(db: Session = Depends(get_db_web)):
-    return db.query(Service).all()
 
 @router.get("/{service_id}", response_model=ServiceResponse)
 def get_service(service_id: int, db: Session = Depends(get_db_web)):
@@ -33,6 +44,7 @@ def get_service(service_id: int, db: Session = Depends(get_db_web)):
     if not service:
         raise HTTPException(status_code=404, detail="Servicio no encontrado")
     return service
+
 
 @router.put("/{service_id}", response_model=ServiceResponse)
 def update_service(service_id: int, service: ServiceCreate, db: Session = Depends(get_db_web)):
@@ -47,12 +59,3 @@ def update_service(service_id: int, service: ServiceCreate, db: Session = Depend
     db.commit()
     db.refresh(db_service)
     return db_service
-
-@router.get("/panel")
-def panel_info(db: Session = Depends(get_db_web)):
-    return {
-        "tecnicos": db.query(Technician).count(),
-        "tickets": db.query(Ticket).count(),
-        "servicios": db.query(Service).count()
-    }
-
