@@ -1,93 +1,60 @@
-const API_URL = "http://localhost:8000"; // URL de tu backend FastAPI
-
-/* ============================
-   AUTH
-============================ */
-
-export async function login(usuario, password) {
-  const response = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ usuario, password })
-  });
-  return response.json();
-}
-
-export async function register(usuario, password) {
-  const response = await fetch(`${API_URL}/auth/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ usuario, password })
-  });
-  return response.json();
-}
-
-/* ============================
-   CONTACTO GENERAL
-============================ */
+const API_URL = "http://localhost:8001"; // lo cambiaremos cuanod migremos a cloud aws
 
 export async function enviarContacto(data) {
-  const response = await fetch(`${API_URL}/contacto/`, {
+  return await fetch(`${API_URL}/admin/forms/importar`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      empresa: data.nombre,
+      contacto: data.nombre,
+      correo: data.email,
+      mensaje: data.mensaje,
+      origen: data.tipo || "contacto_general"
+    })
   });
-  return response.json();
 }
 
-/* ============================
-   ACCESO EMPRESAS
-============================ */
 
 export async function enviarAccesoEmpresas(data) {
-  const response = await fetch(`${API_URL}/acceso_empresas/`, {
+  return await fetch(`${API_URL}/admin/forms/importar`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      empresa: data.nombre,
+      contacto: data.nombre,
+      correo: data.email,
+      mensaje: data.mensaje,
+      origen: "acceso_empresas"
+    })
   });
-  return response.json();
 }
 
-/* ============================
-   INTEGRACIÓN PERSONALIZADA
-============================ */
 
 export async function enviarIntegracion(data) {
-  const response = await fetch(`${API_URL}/integracion/`, {
+  return await fetch(`${API_URL}/admin/forms/importar`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      empresa: data.nombre,
+      contacto: data.nombre,
+      correo: data.email,
+      mensaje: data.mensaje,
+      origen: "integracion_personalizada"
+    })
   });
-  return response.json();
 }
 
-/* ============================
-   DEMO GUIADA
-============================ */
 
 export async function enviarDemoGuiada(data) {
-  const response = await fetch(`${API_URL}/demo_guiada/`, {
+  return await fetch(`${API_URL}/admin/forms/importar`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      empresa: data.nombre,
+      contacto: data.nombre,
+      correo: data.email,
+      mensaje: data.mensaje,
+      origen: "demo_guiada"
+    })
   });
-  return response.json();
-}
-
-/* ============================
-   TÉCNICOS
-============================ */
-
-export async function getTecnicos() {
-  const response = await fetch(`${API_URL}/tecnicos/`);
-  return response.json();
-}
-
-/* ============================
-   SERVICIOS
-============================ */
-
-export async function getServices() {
-  const response = await fetch(`${API_URL}/services/`);
-  return response.json();
 }
