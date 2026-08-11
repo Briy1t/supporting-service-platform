@@ -15,13 +15,3 @@ class UserCreate(UserBase):
 class UserLogin(BaseModel):
     usuario: str
     password: str
-
-
-
-class UserResponse(BaseModel):
-    id: int
-    usuario: str
-    rol: str
-    token: str
-
-    model_config = ConfigDict(from_attributes=True)

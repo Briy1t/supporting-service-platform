@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine_web, BaseWeb
 
 
-from app.models.user import User
 from app.models.ticket import Ticket
 from app.models.technician import Technician
 from app.models.service import Service
