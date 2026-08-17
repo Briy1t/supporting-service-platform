@@ -3,7 +3,6 @@ import MonitoringImg from "../assets/img/monitoring.avif";
 export default function Monitorizacion() {
   return (
     <div>
-      {/* NAVBAR */}
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
@@ -22,7 +21,6 @@ export default function Monitorizacion() {
       </header>
 
       <main className="container">
-        {/* HERO MONITORIZACIÓN */}
         <section className="hero">
           <div className="hero-content">
             <h1>Monitorización en Tiempo Real</h1>
@@ -40,7 +38,7 @@ export default function Monitorizacion() {
           </div>
         </section>
 
-        {/* SECCIÓN PRINCIPAL */}
+
         <section id="panel" className="section">
           <h2 className="section-title">Panel de Monitorización</h2>
 
@@ -62,7 +60,6 @@ export default function Monitorizacion() {
           </div>
         </section>
 
-        {/* SECCIÓN EXTRA */}
         <section className="section">
           <h2 className="section-title">Reportes y Auditoría</h2>
 
@@ -85,9 +82,10 @@ export default function Monitorizacion() {
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
+        
         <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+        <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );

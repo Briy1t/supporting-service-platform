@@ -9,6 +9,12 @@ class DemoGuiada(BaseWeb):
     nombre = Column(String, nullable=False)
     empresa = Column(String, nullable=True)
     email = Column(String, nullable=False)
+    telefono = Column(String, nullable=True)
     mensaje = Column(String, nullable=False)
     tipo = Column(String, default="demo_guiada")
+    
+    privacidad = Column(Boolean, nullable=False)
+    fecha_aceptacion = Column(DateTime, default=datetime.utcnow)
+    ip_usuario = Column(String, nullable=True)
+    
     fecha = Column(DateTime, default=datetime.utcnow)

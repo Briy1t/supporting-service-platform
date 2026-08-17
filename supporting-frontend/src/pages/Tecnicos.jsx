@@ -3,7 +3,7 @@ import TecnicosImg from "../assets/img/tecnicos.png";
 export default function Tecnicos() {
   return (
     <div>
-      {/* NAVBAR */}
+
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
@@ -22,7 +22,7 @@ export default function Tecnicos() {
       </header>
 
       <main className="container">
-        {/* HERO TÉCNICOS */}
+  
         <section className="hero">
           <div className="hero-content">
             <h1>Equipo Técnico</h1>
@@ -35,7 +35,6 @@ export default function Tecnicos() {
           </div>
         </section>
 
-        {/* LISTA DE TÉCNICOS */}
         <section className="section">
           <h2 className="section-title">Técnicos Disponibles</h2>
 
@@ -67,9 +66,9 @@ export default function Tecnicos() {
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
-        <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );

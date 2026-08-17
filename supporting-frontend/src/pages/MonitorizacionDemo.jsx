@@ -4,7 +4,6 @@ import NetworkChart from "../assets/img/network-chart.png";
 export default function MonitorizacionDemo() {
   return (
     <div>
-      {/* NAVBAR */}
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
@@ -41,7 +40,6 @@ export default function MonitorizacionDemo() {
           </div>
         </section>
 
-        {/* DASHBOARD SIMULADO */}
         <section id="dashboard" className="section">
           <h2 className="section-title">Dashboard Simulado</h2>
 
@@ -76,7 +74,6 @@ export default function MonitorizacionDemo() {
           </div>
         </section>
 
-        {/* GRÁFICOS SIMULADOS */}
         <section className="section">
           <h2 className="section-title">Gráficos de Actividad</h2>
 
@@ -110,7 +107,7 @@ export default function MonitorizacionDemo() {
           </div>
         </section>
 
-        {/* SECCIÓN FINAL */}
+
         <section className="section">
           <h2 className="section-title">¿Quieres Ver el Panel Real?</h2>
 
@@ -136,9 +133,9 @@ export default function MonitorizacionDemo() {
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
-        <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );

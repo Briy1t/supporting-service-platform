@@ -1,13 +1,14 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from pydantic import ConfigDict
 class DemoGuiadaCreate(BaseModel):
-    nombre: str
-    empresa: str | None = None
+    nombre: str = Field(min_length=3, max_length=50)
     email: EmailStr
-    mensaje: str
+    telefono: str | None = Field(default=None, pattern=r"^\+?\d{9,15}$")
+    mensaje: str = Field(min_length=5, max_length=500)
     tipo: str = "demo_guiada"
 
+    privacidad: bool = True
 class DemoGuiadaResponse(DemoGuiadaCreate):
     id: int
     fecha: datetime

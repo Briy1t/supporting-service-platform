@@ -111,6 +111,7 @@ export default function Login() {
 
       <footer className="footer">
         <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+        <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );

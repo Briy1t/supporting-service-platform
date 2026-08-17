@@ -1,12 +1,14 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import BaseModel, EmailStr, ConfigDict, Field
 from datetime import datetime
 from pydantic import ConfigDict
 class AccesoEmpresasCreate(BaseModel):
-    nombre: str
+    nombre: str = Field(min_length=3, max_length=50)
     email: EmailStr
-    telefono: str | None = None
-    mensaje: str
+    telefono: str | None = Field(default=None, pattern=r"^\+?\d{9,15}$")
+    mensaje: str = Field(min_length=5, max_length=500)
     tipo: str = "acceso_empresas"
+
+    privacidad: bool = True
 
 class AccesoEmpresasResponse(AccesoEmpresasCreate):
     id: int

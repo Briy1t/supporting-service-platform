@@ -12,4 +12,9 @@ class AccesoEmpresas(BaseWeb):
     telefono = Column(String, nullable=True)
     mensaje = Column(String, nullable=False)
     tipo = Column(String, default="acceso_empresas")
+    
+    privacidad = Column(Boolean, nullable=False)
+    fecha_aceptacion = Column(DateTime, default=datetime.utcnow)
+    ip_usuario = Column(String, nullable=True)
+    
     fecha = Column(DateTime, default=datetime.utcnow)
