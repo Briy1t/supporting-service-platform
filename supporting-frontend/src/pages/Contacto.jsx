@@ -131,7 +131,8 @@ export default function Contacto() {
                 type="tel" 
                 name="telefono" 
                 required
-                pattern="^\\+?\\d{9,15}$"
+                pattern="^\+?\d[\d\s]{8,14}$"
+                title="Ingrese un número de teléfono válido, puede incluir el código de país. Ejemplo: +34123456789"
               />
             </div>
 

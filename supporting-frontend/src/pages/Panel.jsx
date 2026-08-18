@@ -7,12 +7,6 @@ export default function Panel() {
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
 
-          <nav className="navbar-center">
-            <a href="/#servicios">Servicios</a>
-            <a href="/monitorizacion">Monitorización</a>
-            <a href="/#precios">Precios</a>
-            <a href="/contacto">Contacto</a>
-          </nav>
 
           <div className="navbar-right">
             <a className="btn-nav" href="/login">Salir</a>

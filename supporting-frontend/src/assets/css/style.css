@@ -374,6 +374,22 @@ html {
     margin-bottom: 15px;
 }
 
+.volver-container {
+  display: flex;
+  justify-content: center;
+}
+
+.volver-container .btn-nav {
+  background-color: #4574bb;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
 
 /* ============================
    PRICING
