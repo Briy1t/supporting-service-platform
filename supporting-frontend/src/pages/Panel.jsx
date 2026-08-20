@@ -3,17 +3,10 @@ import PanelImg from "../assets/img/panel.png";
 export default function Panel() {
   return (
     <div>
-      {/* NAVBAR */}
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
 
-          <nav className="navbar-center">
-            <a href="/#servicios">Servicios</a>
-            <a href="/monitorizacion">Monitorización</a>
-            <a href="/#precios">Precios</a>
-            <a href="/contacto">Contacto</a>
-          </nav>
 
           <div className="navbar-right">
             <a className="btn-nav" href="/login">Salir</a>
@@ -22,7 +15,7 @@ export default function Panel() {
       </header>
 
       <main className="container">
-        {/* HERO PANEL */}
+
         <section className="hero">
           <div className="hero-content">
             <h1>Panel del Usuario</h1>
@@ -38,7 +31,7 @@ export default function Panel() {
           </div>
         </section>
 
-        {/* SECCIÓN PRINCIPAL */}
+       
         <section className="section">
           <h2 className="section-title">Tus Servicios</h2>
 
@@ -62,9 +55,10 @@ export default function Panel() {
         </section>
       </main>
 
-      {/* FOOTER */}
+    
       <footer className="footer">
         <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+        <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );

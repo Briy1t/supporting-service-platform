@@ -3,26 +3,19 @@ import TecnicosImg from "../assets/img/tecnicos.png";
 export default function Tecnicos() {
   return (
     <div>
-      {/* NAVBAR */}
+
       <header className="navbar">
         <div className="container navbar-inner">
           <div className="logo">SUPPORTING 🫴</div>
-
-          <nav className="navbar-center">
-            <a href="/#servicios">Servicios</a>
-            <a href="/monitorizacion">Monitorización</a>
-            <a href="/#precios">Precios</a>
-            <a href="/contacto">Contacto</a>
-          </nav>
-
           <div className="navbar-right">
-            <a className="btn-nav" href="/login">Ingresar</a>
+            <a className="btn-nav" href="/login">Salir</a>
           </div>
+
         </div>
       </header>
 
       <main className="container">
-        {/* HERO TÉCNICOS */}
+  
         <section className="hero">
           <div className="hero-content">
             <h1>Equipo Técnico</h1>
@@ -35,7 +28,6 @@ export default function Tecnicos() {
           </div>
         </section>
 
-        {/* LISTA DE TÉCNICOS */}
         <section className="section">
           <h2 className="section-title">Técnicos Disponibles</h2>
 
@@ -63,13 +55,19 @@ export default function Tecnicos() {
               <p>Administrador de Redes</p>
               <p>Gestión de infraestructura, firewalls y conectividad.</p>
             </div>
+
           </div>
         </section>
+        <div className="volver-container">
+              <button className="btn-nav" onClick={() => window.history.back()}>
+                ← Volver
+            </button>
+        </div>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
-        <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p>© 2026 Supporting — IT Support, Hardening & Monitoring</p>
+          <p><a href="mailto:contactosupporting@gmail.com">contactosupporting@gmail.com</a></p>
       </footer>
     </div>
   );
