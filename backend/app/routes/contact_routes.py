@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 from app.database import get_db_web
-from app.models.contact import Contact
+from app.models.contact import Contactos
 from app.schemas.contact import ContactCreate, ContactResponse
 from app.security import limiter, sanitize
 from slowapi import Limiter
@@ -12,7 +12,7 @@ router = APIRouter(prefix="/contacto", tags=["Contacto"])
 @router.post("/", response_model=ContactResponse)
 @limiter.limit("5/minute")
 def crear_contacto(request: Request, data: ContactCreate, db: Session = Depends(get_db_web)):
-    contacto = Contact(
+    contacto = Contactos(
         nombre=data.nombre,
         email=data.email,
         mensaje=sanitize(data.mensaje),

@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from datetime import datetime
 from app.database import BaseWeb
 
-class Contact(BaseWeb):
+class Contactos(BaseWeb):
     __tablename__ = "contactos"
 
     id = Column(Integer, primary_key=True, index=True)

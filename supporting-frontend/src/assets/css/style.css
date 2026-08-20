@@ -20,7 +20,6 @@ html {
 }
 
 .container {
-    width: 100%;
     max-width: 1500px;
     margin: 0 auto;
     padding: 0 20px;
@@ -45,8 +44,8 @@ html {
 }
 
 .navbar-inner {
-    width: 100%;
     max-width: 1500px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +56,7 @@ html {
     font-size: 36px;
     font-weight: 700;
     background: linear-gradient(135deg, #ffffff 0%, #4da8ff 60%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px rgba(73, 203, 255, 0.4);
@@ -75,7 +75,7 @@ html {
 
 .btn-nav {
     padding: 8px 16px;
-    border: 1px solid  #4da8ff;
+    border: 1px solid #4da8ff;
     border-radius: 6px;
     color: #d5ecf5;
     margin-left: 20px;
@@ -103,7 +103,6 @@ html {
 }
 
 .hero-content {
-    position: relative;
     z-index: 2;
     padding-left: 60px;
 }
@@ -112,7 +111,7 @@ html {
     font-family: 'Orbitron', sans-serif;
     font-size: 52px;
     font-weight: 700;
-    color:#e6e9f0;
+    color: #e6e9f0;
 }
 
 .hero-content p {
@@ -138,7 +137,6 @@ html {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    overflow: hidden;
 }
 
 .hero-image img {
@@ -203,7 +201,7 @@ html {
 
 
 /* ============================
-   FORMULARIO DE CONTACTO (FINAL)
+   FORMULARIO DE CONTACTO
 ============================ */
 
 .form-contact {
@@ -211,14 +209,12 @@ html {
     padding: 30px;
     border-radius: 12px;
     border: 1px solid rgba(77, 168, 255, 0.4);
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
-    color: #e6eef7;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
     display: flex;
     flex-direction: column;
     gap: 22px;
 }
 
-/* Bloque por campo */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -248,7 +244,6 @@ html {
     box-shadow: 0 0 0 2px rgba(57,223,194,0.3);
 }
 
-/* Bloque de privacidad */
 .form-privacy {
     margin-top: 10px;
     padding-top: 20px;
@@ -258,15 +253,12 @@ html {
     gap: 15px;
 }
 
-/* Texto informativo */
 .form-info {
     font-size: 14px;
     color: #b4c7d7;
     line-height: 1.5;
-    margin: 0;
 }
 
-/* Checkbox alineado */
 .privacy-check {
     display: flex;
     align-items: center;
@@ -283,15 +275,12 @@ html {
 
 
 /* ============================
-   MODAL DE POLÍTICA DE PRIVACIDAD
+   MODAL
 ============================ */
 
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.65);
     display: flex;
     justify-content: center;
@@ -305,7 +294,7 @@ html {
     width: 90%;
     max-width: 600px;
     border-radius: 12px;
-    box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
     color: #e6eef7;
     max-height: 80vh;
     overflow-y: auto;
@@ -318,8 +307,7 @@ html {
 }
 
 .modal h3 {
-    margin-top: 20px;
-    margin-bottom: 8px;
+    margin: 20px 0 8px;
     color: #cbd6e2;
 }
 
@@ -366,28 +354,24 @@ html {
     margin-bottom: 24px;
 }
 
-.card a {
-    margin-top: auto;
-}
-
 .card h3 {
     margin-bottom: 15px;
 }
 
 .volver-container {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .volver-container .btn-nav {
-  background-color: #4574bb;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
+    background: linear-gradient(135deg, #39dfc2, #4da8ff);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(77, 184, 255, 0.4);
+    transition: 0.3s ease;
 }
 
 
@@ -415,7 +399,7 @@ html {
 .price {
     font-size: 28px;
     margin: 20px 0;
-    color:  #4da8ff;
+    color: #4da8ff;
 }
 
 
@@ -440,11 +424,9 @@ html {
     .hero {
         flex-direction: column;
         padding: 40px 20px;
-        height: auto;
     }
 
     .hero-content {
-        width: 100%;
         text-align: center;
         padding-left: 0;
     }
@@ -472,18 +454,12 @@ html {
         object-fit: contain !important;
     }
 
-    .cards {
-        flex-direction: column;
-    }
-
-    .card {
-        width: 100%;
-    }
-
+    .cards,
     .pricing {
         flex-direction: column;
     }
 
+    .card,
     .price-card {
         width: 100%;
     }

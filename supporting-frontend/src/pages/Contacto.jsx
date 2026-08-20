@@ -1,56 +1,30 @@
 import Contact from "../assets/img/contact.png";
 import { useEffect, useState } from "react";
-
-import { 
-  enviarContacto,
-  enviarAccesoEmpresas,
-  enviarIntegracion,
-  enviarDemoGuiada
-} from "../services/api";
+import { enviarContacto } from "../services/api";
 
 export default function Contacto() {
-  const [tipo, setTipo] = useState("contacto_general");
 
-
+  const [tipo, setTipo] = useState("general");
   const [mostrarPolitica, setMostrarPolitica] = useState(false);
   const [politicaLeida, setPoliticaLeida] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const tipoURL = params.get("tipo") || "contacto_general";
-    setTipo(tipoURL);
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-      nombre: e.target.nombre.value,
-      email: e.target.email.value,
-      telefono: e.target.telefono.value,
+      empresa: e.target.nombre.value,
+      contacto: e.target.nombre.value,
+      correo: e.target.email.value,
       mensaje: e.target.mensaje.value,
-      privacidad: e.target.privacidad.checked,
-      tipo: tipo
+      origen: tipo
     };
 
     try {
-      if (tipo === "contacto_general") {
-        await enviarContacto(data);
-      } 
-      else if (tipo === "acceso_empresas") {
-        await enviarAccesoEmpresas(data);
-      } 
-      else if (tipo === "integracion_personalizada") {
-        await enviarIntegracion(data);
-      } 
-      else if (tipo === "demo_guiada") {
-        await enviarDemoGuiada(data);
-      }
-
+      await enviarContacto(data);
       alert("Solicitud enviada correctamente");
-    } catch (error) {
-      alert("Error al enviar la solicitud");
-      console.error(error);
+    } catch (err) {
+      console.error("Error enviando contacto:", err);
+      alert("Hubo un error al enviar la solicitud");
     }
   };
 
@@ -132,11 +106,10 @@ export default function Contacto() {
                 name="telefono" 
                 required
                 pattern="^\+?\d[\d\s]{8,14}$"
-                title="Ingrese un número de teléfono válido, puede incluir el código de país. Ejemplo: +34123456789"
+                title="Ingrese un número de teléfono válido"
               />
             </div>
 
-            {/* Campo: Mensaje */}
             <div className="form-group">
               <label>Mensaje</label>
               <textarea 
@@ -147,7 +120,6 @@ export default function Contacto() {
               ></textarea>
             </div>
 
-            {/* Bloque de privacidad */}
             <div className="form-privacy">
               <p className="form-info">
                 Antes de enviar su solicitud lea nuestra política de privacidad.
@@ -169,10 +141,15 @@ export default function Contacto() {
               )}
             </div>
 
-            {/* Botón enviar */}
             <button type="submit" className="btn-primary">
               Enviar Solicitud
             </button>
+
+            <div className="volver-container">
+              <button className="btn-nav" onClick={() => window.history.back()}>
+                ← Volver
+              </button>
+            </div>
           </form>
 
         </section>
@@ -186,16 +163,13 @@ export default function Contacto() {
             <p><strong>Última actualización:</strong> Agosto 2026</p>
 
             <h3>¿Qué datos recogemos?</h3>
-            <p>Nombre, correo, teléfono, empresa y descripción de la consulta.</p>
+            <p>Nombre, correo, teléfono y descripción de la consulta.</p>
 
             <h3>¿Para qué los usamos?</h3>
             <p>Para gestionar su solicitud y enviar una propuesta personalizada.</p>
 
             <h3>¿Quién los procesa?</h3>
-            <p>Solo el equipo autorizado de Supporting. No se comparten con terceros.</p>
-
-            <h3>¿Cómo se almacenan y protegen?</h3>
-            <p>Se transmiten mediante HTTPS/SSL y se guardan temporalmente en sistemas internos protegidos.</p>
+            <p>Solo el equipo autorizado de Supporting.</p>
 
             <h3>¿Cómo se eliminan?</h3>
             <p>
@@ -203,17 +177,11 @@ export default function Contacto() {
               Si es descartado, se eliminan de forma permanente.
             </p>
 
-            <h3>Derechos del usuario</h3>
-            <p>
-              Puede solicitar acceso, rectificación o eliminación escribiendo a  
-              <strong>contactosupporting@gmail.com</strong>.
-            </p>
-
             <button
               className="btn-primary"
               onClick={() => {
                 setMostrarPolitica(false);
-                setPoliticaLeida(true); // 🔥 Activa el checkbox
+                setPoliticaLeida(true);
               }}
               style={{ marginTop: "20px" }}
             >

@@ -62,7 +62,7 @@ export default function Tecnicos() {
               <button className="btn-nav" onClick={() => window.history.back()}>
                 ← Volver
             </button>
-          </div>
+        </div>
       </main>
 
       <footer className="footer">
