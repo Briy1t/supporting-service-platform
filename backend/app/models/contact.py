@@ -8,7 +8,7 @@ class Contactos(BaseWeb):
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String, nullable=False)
     email = Column(String, nullable=False)
-    telefono = Column(String, nullable=True)
+    telefono = Column(String, nullable=False)
     mensaje = Column(String, nullable=False)
     tipo = Column(String, default="general")
  

@@ -11,17 +11,39 @@ export default function Contacto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      empresa: e.target.nombre.value,
+    const dataWeb = {
+      nombre: e.target.nombre.value,
+      email: e.target.email.value,
+      telefono: e.target.telefono.value,
+      mensaje: e.target.mensaje.value,
+      tipo: tipo,
+      privacidad: e.target.privacidad.checked
+    };
+
+    const dataPlataforma = {
       contacto: e.target.nombre.value,
       correo: e.target.email.value,
+      telefono: e.target.telefono.value,
       mensaje: e.target.mensaje.value,
       origen: tipo
     };
 
     try {
-      await enviarContacto(data);
+      await enviarContacto(dataWeb);
+
+      const res = await fetch("http://localhost:8001/admin/forms/importar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataPlataforma)
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        alert(error.detail);
+        return;
+      }
       alert("Solicitud enviada correctamente");
+
     } catch (err) {
       console.error("Error enviando contacto:", err);
       alert("Hubo un error al enviar la solicitud");
@@ -136,7 +158,7 @@ export default function Contacto() {
               {politicaLeida && (
                 <label className="privacy-check">
                   <input type="checkbox" name="privacidad" required />
-                  Acepto la política de privacidad
+                  Acepto las políticas de privacidad
                 </label>
               )}
             </div>
