@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer components {
+  .index-container {
+    @apply min-h-screen bg-[#020b2b] text-slate-100 font-sans pb-16 tracking-normal;
+  }
+
+  /* Grilla de Cards para Servicios */
+  .cards {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 my-8;
+  }
+
+  .card {
+    @apply bg-[#0b111e] p-8 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:-translate-y-1 shadow-xl flex flex-col justify-between space-y-4;
+  }
+
+  .card h3 {
+    @apply text-xl font-bold text-cyan-400 font-sans tracking-tight;
+  }
+
+  .card p {
+    @apply text-slate-400 text-sm leading-relaxed font-sans;
+  }
+
+  /* Secciones de Precios */
+  .pricing {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 my-10 items-stretch;
+  }
+
+  .price-card {
+    @apply bg-[#0b111e] p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl relative;
+  }
+
+  .price-card.featured {
+    @apply border-cyan-400 shadow-xl shadow-cyan-500/10 bg-gradient-to-b from-[#0b111e] to-[#142238] scale-105 z-10;
+  }
+
+  .price {
+    @apply text-4xl font-extrabold text-white my-4 font-sans tracking-tight;
+  }
+
+  .price-card ul {
+    @apply space-y-3 text-sm text-slate-300 mb-6 font-sans;
+  }
+
+  .price-card ul li {
+    @apply flex items-center gap-2.5;
+  }
+
+  .price-card ul li::before {
+    content: "✓";
+    @apply text-cyan-400 font-bold;
+  }
+}

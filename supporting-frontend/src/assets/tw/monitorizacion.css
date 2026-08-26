@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer components {
+  .monitoring-container {
+    @apply min-h-screen bg-[#020b2b] text-slate-100 pt-28 pb-16 px-4 max-w-7xl mx-auto space-y-16;
+  }
+
+  .dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .chart-card {
+    @apply bg-[#0b111e] p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4;
+  }
+
+  .chart-card img {
+    @apply rounded-lg border border-slate-700/50 object-cover w-full h-auto;
+  }
+
+  .status-badge {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30;
+  }
+}

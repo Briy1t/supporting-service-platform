@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@layer components {
+  .panel-container {
+    @apply min-h-screen bg-[#020b2b] text-slate-100 pt-28 pb-16 px-4 max-w-7xl mx-auto space-y-12;
+  }
+
+  .panel-header {
+    @apply bg-gradient-to-r from-[#0b111e] to-[#142238] p-8 rounded-3xl border border-cyan-500/30 shadow-xl;
+  }
+}
