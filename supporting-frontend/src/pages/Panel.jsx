@@ -1,3 +1,4 @@
+import "../assets/tw/panel.css";
 import PanelImg from "../assets/img/panel.png";
 
 export default function Panel() {
