@@ -1,6 +1,6 @@
 # SUPPORTING — Plataforma de Soporte IT, Hardening y Monitorización
 **Versión 1.0.0**
-
+En producción.
 ## Descripción General
 Supporting es una plataforma web diseñada para ofrecer servicios profesionales de soporte IT, hardening de infraestructura y monitorización continua. El proyecto está estructurado como una solución escalable que integra un backend modular desarrollado con FastAPI y un frontend corporativo construido con React. La plataforma está preparada para evolucionar hacia un panel empresarial completo, un panel técnico con agenda de disponibilidad y un sistema de monitorización en tiempo real.
 
