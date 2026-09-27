@@ -1,272 +1,178 @@
-# SUPPORTING — Plataforma de Soporte IT, Hardening y Monitorización
-**Versión 1.0.0**
+<div align="center">
 
-## Descripción General
-Supporting es una plataforma web diseñada para ofrecer servicios profesionales de soporte IT, hardening de infraestructura y monitorización continua. El proyecto está estructurado como una solución escalable que integra un backend modular desarrollado con FastAPI y un frontend corporativo construido con React. La plataforma está preparada para evolucionar hacia un panel empresarial completo, un panel técnico con agenda de disponibilidad y un sistema de monitorización en tiempo real.
+#  SUPPORTING V1 - CRM & Web Corporate
+## WED - supportin
+<p align="center">
+  <b>Modern client-server architecture powered by React, Tailwind CSS, and FastAPI</b>
+</p>
 
-El objetivo es proporcionar una base sólida que permita gestionar usuarios, técnicos, tickets, servicios y empresas, además de ofrecer una experiencia profesional tanto para clientes como para administradores y técnicos.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.0+-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white" alt="JWT">
+</p>
 
----
-
-## Arquitectura del Proyecto
-
-El sistema Supporting está dividido en dos componentes principales:
-
-### Backend (FastAPI + PostgreSQL)
-API REST modular que gestiona:
-
-- Autenticación con JWT  
-- Gestión de usuarios  
-- Tickets  
-- Técnicos  
-- Servicios  
-- Contacto  
-- Acceso empresarial  
-- Integración personalizada  
-- Demo guiada  
-- Monitorización (integración futura)
-
-El backend está diseñado para ser escalable, seguro y fácil de integrar con sistemas externos.
-
-### Frontend (React + Vite)
-Aplicación web corporativa y panel de usuario que incluye:
-
-- Página principal y servicios  
-- Monitorización (simulada en esta versión)  
-- Precios  
-- Contacto  
-- Login  
-- Panel del usuario  
-- Página de técnicos  
-- Demo guiada  
-- Acceso empresarial  
-
-El frontend consume la API del backend y está preparado para integrar dashboards avanzados y paneles empresariales.
+</div>
 
 ---
 
-## Tecnologías Utilizadas
+##  Visión General
 
-### Backend
-- FastAPI  
-- SQLAlchemy  
-- PostgreSQL  
-- Pydantic  
-- bcrypt  
-- JWT  
-- Uvicorn  
+**SUPPORTING V1** es una solución robusta diseñada para la gestión integral de servicios, técnicos e incidencias (CRM), combinada con una presencia web corporativa moderna. El sistema se comunica a través de una API RESTful de alto rendimiento conectada a una base de datos relacional.
 
-### Frontend
-- React  
-- Vite  
-- Context API  
-- CSS modular  
-- Fetch/Axios (según implementación en services)
-
-### Infraestructura (futuro despliegue)
-- AWS EC2  
-- AWS RDS o PostgreSQL local  
-- AWS CloudWatch  
-- API Gateway + Lambda (posible migración serverless)
-
----
-
-## Estructura del Backend
-
-
+```text
+Usuario 
+   │
+   ▼
+[ React + Tailwind CSS ] (Frontend Client)
+   │
+   ▼ (REST API / Endpoints)
+[ FastAPI ] (Backend Server)
+   │
+   ▼
+[ SQLAlchemy ORM ]
+   │
+   ▼
+[ PostgreSQL ] (Database)
 ```
 
-backend/
-│
-├── app/
-│   ├── controllers/      Lógica de negocio
-│   ├── routes/           Endpoints FastAPI
-│   ├── models/           Modelos SQLAlchemy
-│   ├── schemas/          Validación con Pydantic
-│   ├── utils/            Seguridad, hashing y utilidades
-│   ├── database.py       Conexión a PostgreSQL
-│   └── main.py           Inicialización de FastAPI
-│
-├── venv/
-└── requirements.txt
+---
 
+## 📂 Estructura del Proyecto
+
+El repositorio está organizado en dos componentes principales (`backend` y `supporting-frontend`):
+
+```text
+supporting/
+├── backend/
+│   ├── app/
+│   │   ├── controllers/
+│   │   ├── logs/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── schemas/
+│   │   ├── utils/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── main.py
+│   │   └── security.py
+│   ├── docs/
+│   │   └── v1/
+│   │       ├── img/
+│   │       └── arquitectura.md
+│   ├── requirements.txt
+│   ├── run.py
+│   └── README.md
+└── supporting-frontend/
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── context/
+    │   ├── pages/
+    │   ├── router/
+    │   ├── services/
+    │   ├── App.css
+    │   ├── App.jsx
+    │   ├── index.css
+    │   └── main.jsx
+    └── package.json
 ```
-Estructura del Frontend
-
-```
-supporting-frontend/
-│
-├── public/
-├── src/
-│   ├── assets/           Recursos estáticos (css, img, js)
-│   ├── context/          Gestión de autenticación
-│   ├── pages/            Páginas principales
-│   ├── router/           Rutas de la aplicación
-│   ├── services/         Conexión con la API
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-│
-├── package.json
-└── vite.config.js
-
-```
-
 
 ---
 
-## Funcionalidades Actuales
+##  Arquitectura & Responsabilidades
 
-### Backend
-- Registro de usuarios  
-- Login con JWT  
-- Cambio de contraseña  
-- Creación de usuarios por administrador  
-- Gestión de tickets  
-- Gestión de técnicos  
-- Gestión de servicios  
-- Contacto  
-- Acceso empresarial  
-- Integración personalizada  
-- Demo guiada  
+###  Frontend (`supporting-frontend`)
+Desarrollado con **React** y estilizado de forma moderna con **Tailwind CSS**.
+* **Web corporativa:** Presentación institucional y de soluciones IT.
+* **Portal de servicios:** Consulta interactiva de soluciones ofrecidas.
+* **Área de usuario & Login:** Gestión de sesiones seguras mediante tokens.
+* **Gestión de peticiones:** Formularios de contacto y atención al cliente.
 
-### Frontend
-- Página corporativa completa  
-- Sección de servicios  
-- Sección de monitorización (simulada)  
-- Sección de precios  
-- Página de contacto  
-- Página de técnicos  
-- Login  
-- Panel del usuario  
-- Demo guiada  
-- Acceso empresarial  
+### 🔌 Backend (`backend`)
+Desarrollado con **FastAPI** y estructurado mediante capas limpias.
+* **Autenticación JWT:** Seguridad robusta para control de sesiones y roles.
+* **Gestión de usuarios y técnicos:** Alta, modificación de perfiles y asignación de especialidades.
+* **Gestión de servicios y tickets:** Creación, seguimiento de incidencias y flujos operativos.
+* **Formularios de contacto:** Procesamiento de solicitudes comerciales y empresariales.
 
 ---
 
-## Escalabilidad y Próximas Mejoras
+##  Módulos del Sistema
 
-El proyecto está diseñado para crecer en tres fases:
-
-### Fase 1 — Plataforma corporativa + backend estable  
-Completada.
-
-- Futuras mejoras poder agendar cita con equipo tecnico desde la wed 
-- Integracion de la app de monitorio
-
-### Fase 2 — Plataforma empresarial
-- Panel empresarial completo  
-- Panel técnico con agenda de disponibilidad  
-- Gestión avanzada de tickets  
-- Roles y permisos  
-- Integración con servicios externos  
-
-### Fase 3 — Monitorización en tiempo real
-- Métricas de infraestructura  
-- Alertas inteligentes  
-- Logs centralizados  
-- Auditoría  
-
+| Módulo | Descripción / Características |
+| :--- | :--- |
+| **Autenticación** | Registro, inicio de sesión seguro con JWT y cambio de contraseña. |
+| **Gestión de Usuarios** | Alta de usuarios, modificación de datos y control de roles. |
+| **Servicios** | Consulta de servicios y presentación comercial de soluciones IT. |
+| **Técnicos** | Visualización del personal técnico y desglose de especialidades. |
+| **Tickets** | Creación de incidencias y seguimiento operativo básico. |
+| **Contacto** | Solicitud comercial, de información y acceso empresarial. |
 
 ---
 
-## Instalación y Ejecución
+##  Guía de Inicio Rápido
 
-### Backend
+### 1. Configurar el Backend
 
-```
+```bash
+# Entrar a la carpeta del backend
 cd backend
+
+# Crear y activar entorno virtual
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+# En Windows:
+venv\Scripts\activate
+# En Linux/macOS:
+# source venv/bin/activate
+
+# Instalar dependencias
 pip install -r requirements.txt
-python run.py --reload
 
+# Configurar variables de entorno (.env) y ejecutar
+python run.py
 ```
---- 
 
-Frontend
+### 2. Configurar el Frontend
 
-```
+```bash
+# Entrar a la carpeta del frontend
 cd supporting-frontend
-npm install
-npm run dev
 
+# Instalar dependencias (incluyendo Tailwind CSS)
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
 ```
 
-## Despliegue en AWS (Free Tier)
-
-El proyecto está preparado para desplegarse en AWS utilizando:
-
-- EC2 para el backend  
-- RDS o PostgreSQL local  
-- Nginx como reverse proxy  
-- CloudWatch para monitoreo  
-- S3 para recursos estáticos (opcional)  
-- API Gateway + Lambda (opcional)
-
 ---
 
-## Roadmap de Desarrollo
 
-### Documentación, limpieza de código, preparación del despliegue.
 
-### Desarrollo del panel empresarial y panel técnico.
+<p align="center">
+  Desarrollado para SUPPORTING V1.
+</p>
 
-### Integración completa con backend, roles y permisos.
+## En produción 
 
-### Monitorización, métricas, logs y despliegue final en AWS.
+Pasos pendientes:
+* Actualización futura cuando este la plataforma lista , unificando endpoints.
+* Autenticación en dos fases.
 
----
+# Vistas Previas del Sistema
 
-## Estado Actual del Proyecto
+* Página de Inicio
+  ![Inicio](docs/img2/inicio.png)
+  
+* Formulario de Contacto
+  ![Contacto](docs/img2/contacto.png)
 
-- Backend estable y funcional  
-- Frontend corporativo completo  
-- Panel del usuario operativo  
-- Integración con API funcionando  
-- Preparado para plataforma empresarial  
-- Preparado para monitorización real  
-- Preparado para despliegue en AWS  
+* Precios y Servicios
+  ![Precios](docs/img2/precios.png)
 
----
-
-## Licencia
-
-Proyecto privado. Todos los derechos reservados.
-
----
-
-## Autora
-
-Desarrollado por Briyit.
-
----
-
-## Vista General del Proyecto
-
-### Página Principal
-![Página Principal](docs/img/index.png)
-
-### Servicios
-![Servicios](docs/img/servicios.png)
-
-### Plan de Monitorización
-![Plan de Monitorización](docs/img/plan_monitorio.png)
-
-### Monitorización
-![Monitorización](docs/img/monitoreo.png)
-
-### Opciones de Contacto
-![Opciones de Contacto](docs/img/opciones_contacto.png)
-
-### Página de Contacto
-![Página de Contacto](docs/img/contacto.png)
-
-### Login
-![Login](docs/img/log.png)
-
-### Panel del Usuario
-![Panel del Usuario](docs/img/usuario.png)
-
-### Página de Técnicos
-![Página de Técnicos](docs/img/Tecnicos.png)
+* Registro / Autenticación (Log)
+  ![Log](docs/img2/log.png)
