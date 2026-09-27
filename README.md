@@ -40,7 +40,7 @@ Usuario
 
 ---
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 El repositorio está organizado en dos componentes principales (`backend` y `supporting-frontend`):
 
