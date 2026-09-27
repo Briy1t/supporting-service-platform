@@ -92,7 +92,7 @@ Desarrollado con **React** y estilizado de forma moderna con **Tailwind CSS**.
 * **Área de usuario & Login:** Gestión de sesiones seguras mediante tokens.
 * **Gestión de peticiones:** Formularios de contacto y atención al cliente.
 
-### 🔌 Backend (`backend`)
+### Backend (`backend`)
 Desarrollado con **FastAPI** y estructurado mediante capas limpias.
 * **Autenticación JWT:** Seguridad robusta para control de sesiones y roles.
 * **Gestión de usuarios y técnicos:** Alta, modificación de perfiles y asignación de especialidades.
