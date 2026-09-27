@@ -174,5 +174,5 @@ Pasos pendientes:
 * Precios y Servicios
   ![Precios](docs/img2/precios.png)
 
-### Registro / Autenticación (Log)
+* Registro / Autenticación (Log)
   ![Log](docs/img2/log.png)
